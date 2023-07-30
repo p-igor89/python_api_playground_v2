@@ -3,9 +3,12 @@ from datetime import datetime
 
 from requests import Response
 
+from common_method import find_project_root
+
 
 class Logger:
-    file_name = f"../logs/log_" + str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
+    directory = find_project_root()
+    file_name = f"{directory}/logs/log_" + str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S")) + ".log"
 
     @classmethod
     def _write_log_to_file(cls, data: str):

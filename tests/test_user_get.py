@@ -1,8 +1,11 @@
+import allure
+
 from src.assertions import Assertions
 from src.base_case import BaseCase
 from src.my_requests import MyRequests
 
 
+@allure.epic("User get cases")
 class TestUserGet(BaseCase):
     def test_user_details_not_auth(self):
         response = MyRequests.get("/user/2")
@@ -12,6 +15,7 @@ class TestUserGet(BaseCase):
         Assertions.assert_json_has_no_key(response, "firstName")
         Assertions.assert_json_has_no_key(response, "lastName")
 
+    @allure.description("This test user details auth as same user")
     def test_user_details_auth_as_same_user(self):
         data = {
             'email': 'vinkotov@example.com',
